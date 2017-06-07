@@ -1,1 +1,9 @@
-<app-header></app-header>
+<app-header (navFired)="onNavFired($event)"></app-header>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <app-recipes *ngIf="nav == 'recipe'"></app-recipes>
+            <app-shopping-list *ngIf="nav == 'shoppingList'"></app-shopping-list>
+        </div>
+    </div>
+</div>
