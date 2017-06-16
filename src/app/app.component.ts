@@ -7,9 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app works!';
-  nav:string = "recipe";
-
-  onNavFired(nav: string) {
-    this.nav = nav;
-  }
 }

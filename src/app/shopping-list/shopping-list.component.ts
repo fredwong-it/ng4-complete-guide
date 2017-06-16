@@ -9,11 +9,6 @@ import { ShoppingListService } from './shopping-list.service';
 })
 
 export class ShoppingListComponent implements OnInit {
-/*  ingredients: Ingredient[] = [
-    new Ingredient('Apple', 5),
-    new Ingredient('Tomato', 10)
-  ];*/
-
   ingredients: Ingredient[];
 
   constructor(private shoppingListService: ShoppingListService) { 
@@ -32,10 +27,4 @@ export class ShoppingListComponent implements OnInit {
   getIngredients() {
     this.ingredients = this.shoppingListService.getIngredients();
   }
-
-/*  onAddIngredient(ingredient: Ingredient) {
-    console.log(ingredient);
-
-    this.ingredients.push(ingredient);
-  }*/
 }
