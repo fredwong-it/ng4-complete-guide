@@ -1,0 +1,4 @@
+<h3 *ngIf="editMode; else newTemplate">Edit Recipe({{ id }})</h3>
+<ng-template #newTemplate>
+  <h3>New Recipe</h3>
+</ng-template>
