@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs/Rx';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
-import { ShoppingListService } from './shopping-list.service';
+import { slService } from './shopping-list.service';
 
 @Component({
   selector: 'app-shopping-list',
@@ -11,25 +11,38 @@ import { ShoppingListService } from './shopping-list.service';
 
 export class ShoppingListComponent implements OnInit, OnDestroy {
   ingredients: Ingredient[];
-  private subscription: Subscription;
+  private changedSubscription: Subscription;
+  private exitEditModeSubscription: Subscription;
+  selectedIndex: number;
 
-  constructor(private shoppingListService: ShoppingListService) { 
+  constructor(private slService: slService) { 
   }
 
   ngOnInit() {
     this.getIngredients();
 
-    this.subscription = this.shoppingListService.ingredientChanged
+    this.changedSubscription = this.slService.ingredientChanged
         .subscribe(() => {
           this.getIngredients();
+        });
+
+    this.exitEditModeSubscription = this.slService.exitEditMode
+        .subscribe(() => {
+          this.selectedIndex = null;
         });
   }
 
   getIngredients() {
-    this.ingredients = this.shoppingListService.getIngredients();
+    this.ingredients = this.slService.getIngredients();
+  }
+
+  onSelectItem(id: number) {
+    this.selectedIndex = id;
+    this.slService.selectIngredient(id);
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.changedSubscription.unsubscribe();
+    this.exitEditModeSubscription.unsubscribe();
   }
 }
