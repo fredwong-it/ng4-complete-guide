@@ -1,4 +1,61 @@
-<h3 *ngIf="editMode; else newTemplate">Edit Recipe({{ id }})</h3>
+<!--<h3 *ngIf="editMode; else newTemplate">Edit Recipe({{ id }})</h3>
 <ng-template #newTemplate>
   <h3>New Recipe</h3>
-</ng-template>
+</ng-template>-->
+<div class="row">
+  <div class="col-xs-12">
+    <form (ngSubmit)="onSave()" [formGroup]="editForm">
+      <div class="row">
+        <div class="col-xs-12">
+          <button class="btn btn-success" type="submit">Save</button>
+          <button class="btn btn-danger" type="button" (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" formControlName="name">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="imagePath">Image URL</label>
+            <input type="text" class="form-control" formControlName="imagePath">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <img src="{{ imagePathObj.value }}" alt="" class="img-responsive">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea type="text" class="form-control" row="6" formControlName="description"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="row">
+            <div class="col-xs-8">
+              <input type="text" class="form-control">
+            </div>
+            <div class="col-xs-2">
+              <input type="text" class="form-control">
+            </div>
+            <div class="col-xs-2">
+              <button class="btn btn-danger">X</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
