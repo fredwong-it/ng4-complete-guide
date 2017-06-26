@@ -48,8 +48,8 @@ export class RecipeService {
         this.recipeChanged.next();
     }
 
-    editRecipe(id: number, recipe: Recipe) {
-        this.recipes[id] = recipe;
+    updateRecipe(id: number, newRecipe: Recipe) {
+        this.recipes[id] = newRecipe;
         this.recipeChanged.next();
     }
 
