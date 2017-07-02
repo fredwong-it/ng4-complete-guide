@@ -1,7 +1,7 @@
 import { Subject } from 'rxjs/Rx';
 import { Ingredient } from '../shared/ingredient.model';
 
-export class slService {
+export class ShoppingListService {
     private ingredients: Ingredient[] = [
         new Ingredient('Apple', 5),
         new Ingredient('Tomato', 10)

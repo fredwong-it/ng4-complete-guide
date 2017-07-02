@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs/Rx';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
-import { slService } from './shopping-list.service';
+import { ShoppingListService } from './shopping-list.service';
 
 @Component({
   selector: 'app-shopping-list',
@@ -15,7 +15,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   private exitEditModeSubscription: Subscription;
   selectedIndex: number;
 
-  constructor(private slService: slService) { 
+  constructor(private slService: ShoppingListService) { 
   }
 
   ngOnInit() {

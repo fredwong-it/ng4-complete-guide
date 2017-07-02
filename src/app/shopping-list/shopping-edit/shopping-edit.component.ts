@@ -2,7 +2,7 @@ import { Subscription } from 'rxjs/Rx';
 import { NgForm } from '@angular/forms';
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Ingredient } from '../../shared/ingredient.model'
-import { slService } from 'app/shopping-list/shopping-list.service';
+import { ShoppingListService } from 'app/shopping-list/shopping-list.service';
 
 @Component({
   selector: 'app-shopping-edit',
@@ -24,7 +24,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     }
   }
 
-  constructor(private slService: slService) { }
+  constructor(private slService: ShoppingListService) { }
 
   ngOnInit() {
     this.selectSubscription = this.slService.ingredientSelected
