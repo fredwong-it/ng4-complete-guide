@@ -1,3 +1,4 @@
+import { AuthService } from '../../auth/auth.service';
 import { Ingredient } from '../../shared/ingredient.model';
 import { RecipeService } from '../recipe.service';
 import { Component, OnInit } from '@angular/core';
@@ -13,7 +14,10 @@ export class RecipeDetailComponent implements OnInit {
  recipe: Recipe;
  id: number;
 
-  constructor(private recipeService: RecipeService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private recipeService: RecipeService, 
+              private route: ActivatedRoute, 
+              private router: Router,
+              private authService: AuthService) { }
 
   ngOnInit() {
     this.route.params
@@ -28,7 +32,13 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   onDelete() {
-    this.recipeService.deleteRecipe(this.id);
-    this.router.navigate(["/recipes"]);
+    // redirect to signin page if it is not authenticated
+    if (this.authService.isAuthenticated()) {
+      this.recipeService.deleteRecipe(this.id);
+      this.router.navigate(["/recipes"]);
+    }
+    else {
+      this.router.navigate(['/signin']);
+    }
   }
 }
